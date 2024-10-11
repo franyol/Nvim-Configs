@@ -23,6 +23,8 @@ require "paq" {
     {'williamboman/mason-lspconfig.nvim'},
 }
 
+vim.g.mapleader = " " 
+
 -- Set rosepine color scheme
 require('theme_setup')
 
