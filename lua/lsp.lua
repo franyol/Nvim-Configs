@@ -22,7 +22,7 @@ require('mason').setup({})
 require('mason-lspconfig').setup({
   -- Replace the language servers listed here
   -- with the ones you want to install
-  ensure_installed = {'tsserver', 'rust_analyzer', 'biome', 'bashls', 
+  ensure_installed = {'rust_analyzer', 'biome', 'bashls', 
   		      'clangd', 'cmake', 'dockerls', 'html', 'jsonls', 
 		      'lua_ls', 'autotools_ls',
 	              'marksman', 'pyright', 'sqls', 'lemminx', 'yamlls'},
