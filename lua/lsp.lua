@@ -32,9 +32,4 @@ require('mason-lspconfig').setup({
     end,
   }
 })
-require('lspconfig').biome.setup{
-  root_dir = function(fname)
-    local root = require('lspconfig.util').root_pattern('package.json')(fname)
-    return root or vim.fn.getcwd()  -- Default to current directory if no package.json is found
-  end
-}
+
