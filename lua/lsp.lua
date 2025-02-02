@@ -19,17 +19,31 @@ lsp_zero.on_attach(function(client, bufnr)
 end)
 
 require('mason').setup({})
-require('mason-lspconfig').setup({
-  -- Replace the language servers listed here
-  -- with the ones you want to install
-  ensure_installed = {'rust_analyzer', 'biome', 'bashls',
-  		      'clangd', 'cmake', 'dockerls', 'html', 'jsonls',
-		      'lua_ls', 'autotools_ls',
-	              'marksman', 'pyright', 'lemminx', 'yamlls'},
+
+require("mason-lspconfig").setup({
+  ensure_installed = {
+    "rust_analyzer", "biome", "bashls",
+    "clangd", "cmake", "dockerls", "html", "jsonls",
+    "lua_ls", "autotools_ls", "marksman",
+    "pyright", "lemminx", "yamlls",
+    "ts_ls", -- Correct LSP for TypeScript
+  },
   handlers = {
     function(server_name)
-      require('lspconfig')[server_name].setup({})
+      if server_name == "typescript-language-server" then
+        require("lspconfig").tsserver.setup({ -- Still uses "tsserver" for config
+          capabilities = require("cmp_nvim_lsp").default_capabilities(),
+        })
+      elseif server_name == "biome" then
+        require("lspconfig").biome.setup({
+          on_attach = function(client, bufnr)
+            client.server_capabilities.documentFormattingProvider = true
+            client.server_capabilities.completionProvider = false -- Disable Biome autocompletion
+          end,
+        })
+      else
+        require("lspconfig")[server_name].setup({})
+      end
     end,
-  }
+  },
 })
-
