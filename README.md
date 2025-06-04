@@ -29,7 +29,7 @@ sudo pacman -S npm
 
 1. Clone the repo into your nvimrc directory (This file includes it's own init.lua, if you already have one you may like to merge them or delete the existing one)
 ```bash
-sh -c 'mkdir -p $HOME/.config/nvim && git clone https://github.com/franyol/Nvim-Configs.git $HOME/.config/nvim-temp && mv $HOME/.config/nvim-temp/.* $HOME/.config/nvim/ 2>/dev/null && mv $HOME/.config/nvim-temp/* $HOME/.config/nvim/ && rm -rf $HOME/.config/nvim-temp'
+sh -c 'mkdir -p $HOME/.config/nvim && git clone https://github.com/franyol/Nvim-Configs.git $HOME/.config/nvim'
 ```
 2. Open nvim
 ```
